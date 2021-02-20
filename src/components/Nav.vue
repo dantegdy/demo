@@ -25,9 +25,9 @@ export default {
   data() {
     return {
       NavData: [
-        { name: "基础", to: "jichu" },
-        { name: "中级", to: "zhongji" }
-        // { name: "进阶", to: "jinjie" },
+        { name: "了解", to: "liaojie" },
+        { name: "我的", to: "wode" },
+        { name: "新增", to: "xinzeng" }
         // { name: "高频", to: "gaoping" },
         // { name: "指南", to: "help" },
       ]
@@ -45,12 +45,14 @@ export default {
   right: 0;
   background-color: #fff;
   padding: 11.2px 24px;
-  border: 1px solid #000;
+  // border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
   height:60px;
+  z-index: 999;
 }
 .Nav_logo a{
   color: #000;

@@ -3,8 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import "github-markdown-css"
+// import "github-markdown-css"
 import "normalize.css"
+
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+Vue.use(mavonEditor)
 
 
 Vue.config.productionTip = false

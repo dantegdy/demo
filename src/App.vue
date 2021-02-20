@@ -20,7 +20,9 @@ export default {
 <style lang="less">
 @import url("http://at.alicdn.com/t/font_2032197_y9fzrpnpbbk.css");
 .box {
-  margin-top: 60px;
+  position: relative;
+  top: 60px;
+  z-index: 0;
 }
 a{
   text-decoration: none;
