@@ -119,7 +119,7 @@ export default {
       await this.getdata();
       console.log(this.markdownJson);
       if (!this.$route.query.id) {
-        this.$router.push(`/liaojie?id=${this.markdownJson[0].id}`);
+        this.$router.push(`/wode?id=${this.markdownJson[0].id}`);
       }
       for (let item of this.markdownJson) {
         //如果id存在则渲染
@@ -130,10 +130,11 @@ export default {
         }
       }
       //不存在就显示第一条数据
-      this.$router.push(`/liaojie?id=${this.markdownJson[0].id}`);
+      this.$router.push(`/wode?id=${this.markdownJson[0].id}`);
       this.$router.go(0);
     },
     getdata() {
+      console.log(this.$store.state.username)
       let url = `http://localhost:8090/getmd`;
       return fetch(url)
         .then(res => res.json())
@@ -146,7 +147,7 @@ export default {
     },
     clickTitle(item) {
       if (this.$route.query.id != item.id) {
-        this.$router.push(`/liaojie?id=${item.id}`);
+        this.$router.push(`/wode?id=${item.id}`);
         this.title = item.title;
         this.escapeString = item.msg;
       }

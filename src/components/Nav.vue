@@ -1,6 +1,11 @@
 <template>
   <div class="Nav">
-    <div class="Nav_logo"><router-link to="/">Dante代码之家</router-link></div>
+    <div class="Nav_logo">
+      <router-link to="/">Dante代码之家</router-link>
+      <div>
+        {{ this.$store.state.username }}
+      </div>
+    </div>
     <div class="Nav_right">
       <div class="Nav_sousuo">
         <input type="text" class="Nav_sousuo__text" />
@@ -51,10 +56,10 @@ export default {
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  height:60px;
+  height: 60px;
   z-index: 999;
 }
-.Nav_logo a{
+.Nav_logo a {
   color: #000;
 }
 .Nav_right {
