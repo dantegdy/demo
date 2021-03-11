@@ -21,11 +21,8 @@ export default {
     userInit(){
       // console.log(this.$store.state.username)
       if(!this.$store.state.username){
-        if(window.localStorage.username){
-          this.$store.commit({
-            type:'loginSucc',
-            username:window.localStorage.getItem('username')
-          })
+        if(window.localStorage.username && window.localStorage.user_id){
+          this.$store.state.username = window.localStorage.username;
           this.$store.state.user_id=window.localStorage.getItem('user_id')
         }
       }

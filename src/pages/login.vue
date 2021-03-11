@@ -14,6 +14,7 @@
           type="password"
         ></el-input>
       </div>
+      <router-link to="/register">立即注册</router-link>
       <div class="login_button_box">
         <div class="login_button" @click="doLogin" >确认</div>
       </div>
@@ -32,15 +33,6 @@ export default {
   methods: {
     doLogin() {
       console.log(this.username, this.password);
-      // if(!this.username || !this.passworld) {
-      //   this.$alert("用户名/密码不得为空", "登陆失败", {
-      //     confirmButtonText: "确定",
-      //     callback: action => {
-      //       this.passworld = "";
-      //     }
-      //   });
-      //   return;
-      // }
       let patt_username = new RegExp(/^[a-zA-Z][a-zA-Z0-9_]{4,15}$/); //字母开头，允许5-16字节，允许字母数字下划线
       if (!patt_username.test(this.username)) {
         console.log("不合法");

@@ -8,14 +8,10 @@
         class="left_item"
       >
         <div class="left_item_title">{{ item.title }}</div>
-        <button class="left_item_btn" @click="deleMd(item.id)">删除</button>
       </div>
     </div>
     <div class="lj_right">
-      <h1 class="md_title" v-show="showType == 1">{{ title }}</h1>
-      <input type="text" v-model="title" v-show="showType == 2" />
-      <button @click="clickButton" v-show="showType == 1">编辑</button>
-      <button @click="clickButton" v-show="showType == 2">完成</button>
+      <h1 class="md_title">{{ title }}</h1>
       <!--
             defaultOpen="preview"    edit： 默认展示编辑区域 ， preview： 默认展示预览区域  , 其他 = edit
             :subfield="false" true： 双栏(编辑预览同屏)， false： 单栏(编辑预览分屏)
@@ -27,33 +23,12 @@
        -->
       <mavon-editor
         class="deitor_style"
-        v-show="showType == 1"
         v-model="value"
-        @save="saveMd"
-        @change="
-          value => {
-            mdChange(value);
-          }
-        "
+
         defaultOpen="preview"
         :subfield="false"
         :toolbarsFlag="false"
         :editable="false"
-        :boxShadow="false"
-        :shortCut="false"
-      />
-      <mavon-editor
-        v-show="showType == 2"
-        v-model="value"
-        @save="saveMd"
-        @change="
-          value => {
-            mdChange(value);
-          }
-        "
-        defaultOpen="edit"
-        :subfield="false"
-        :toolbarsFlag="false"
         :boxShadow="false"
         :shortCut="false"
       />
@@ -95,26 +70,7 @@ export default {
   },
 
   methods: {
-    deleMd(id) {
-      console.log(id);
-      var url = `http://127.0.0.1:8090/delmd?id=${id}`;
 
-      fetch(url, {
-        method: "POST" // or 'PUT'
-      })
-        .then(res => res.json())
-        .catch(error => console.error("Error:", error))
-        .then(response => {
-          console.log("Success:", response);
-          this.dataInit();
-        });
-      if (id == this.$route.query.id) {
-        this.$router.go(-1);
-        console.log(-1);
-      } else {
-        this.$router.go(0);
-      }
-    },
     async dataInit() {
       await this.getdata();
       console.log(this.markdownJson);
@@ -151,37 +107,26 @@ export default {
         this.escapeString = item.msg;
       }
     },
-    clickButton() {
-      if (this.showType == 1) {
-        //展示状态
-        console.log("切换为编辑状态");
-        this.showType = 2;
-      } else {
-        //编辑状态
-        console.log("保存");
-        this.saveMd();
-        this.showType = 1;
-      }
-    },
-    saveMd() {
-      console.log("save");
-      let msg = escape(this.escapeString);
-      var url = `http://127.0.0.1:8090/savemd?id=${this.$route.query.id}&title=${this.title}&msg=${msg}`;
 
-      fetch(url, {
-        method: "POST" // or 'PUT'
-      })
-        .then(res => res.json())
-        .catch(error => console.error("Error:", error))
-        .then(response => {
-          console.log("Success:", response);
-          this.dataInit();
-        });
-    },
-    mdChange(value) {
-      this.escapeString = value;
-      // console.log(escape(value));
-    }
+    // saveMd() {
+    //   console.log("save");
+    //   let msg = escape(this.escapeString);
+    //   var url = `http://127.0.0.1:8090/savemd?id=${this.$route.query.id}&title=${this.title}&msg=${msg}`;
+
+    //   fetch(url, {
+    //     method: "POST" // or 'PUT'
+    //   })
+    //     .then(res => res.json())
+    //     .catch(error => console.error("Error:", error))
+    //     .then(response => {
+    //       console.log("Success:", response);
+    //       this.dataInit();
+    //     });
+    // },
+    // mdChange(value) {
+    //   this.escapeString = value;
+    //   // console.log(escape(value));
+    // }
   },
   components: {
     "vue-markdown": VueMarkdown

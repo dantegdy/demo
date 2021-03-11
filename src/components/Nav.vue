@@ -2,8 +2,11 @@
   <div class="Nav">
     <div class="Nav_logo">
       <router-link to="/">Dante代码之家</router-link>
-      <div>
-        {{ this.$store.state.username }}
+      <div class="Nav_user" v-if="this.$store.state.username">
+        <div>
+          {{ this.$store.state.username }}
+        </div>
+        <div class="Nav_user_zx" @click="zxUser"> 注销</div>
       </div>
     </div>
     <div class="Nav_right">
@@ -37,6 +40,14 @@ export default {
         // { name: "指南", to: "help" },
       ]
     };
+  },
+  methods:{
+    zxUser(){
+      console.log("zhuxiao")
+      window.localStorage.username="";
+      window.localStorage.user_id="";
+      this.$router.go(0)
+    },
   }
 };
 </script>
@@ -61,6 +72,14 @@ export default {
 }
 .Nav_logo a {
   color: #000;
+}
+
+.Nav_user{
+  display: flex;
+  font-size: 12px;
+  .Nav_user_zx{
+    margin-left:20px;
+  }
 }
 .Nav_right {
   display: flex;

@@ -35,7 +35,9 @@ const router= new Router({
       beforeEnter:(to,from,next)=>{
         // console.log(to,from)
         // console.log(store.state)
-        if(!store.state.username){
+        store.state.username = window.localStorage.getItem('username')
+        store.state.user_id = window.localStorage.getItem('user_id')
+        if(!store.state.username || !store.state.user_id){
           if(window.localStorage.getItem('username')){
             store.state.username = window.localStorage.getItem('username')
           }else{
@@ -44,7 +46,12 @@ const router= new Router({
         }
         next()
       }
-    }
+    },
+    {
+      path: '/register',
+      name:'register',
+      component:()=>import(/* webpackChunName: "register" */ '@/pages/register')
+    },
   ]
 })
 

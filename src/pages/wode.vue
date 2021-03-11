@@ -1,22 +1,23 @@
 <template>
   <div class="liaojie">
-    <div class="lj_left">
-      <div
-        v-for="item in markdownJson"
-        :key="item.id"
-        @click="clickTitle(item)"
-        class="left_item"
-      >
-        <div class="left_item_title">{{ item.title }}</div>
-        <button class="left_item_btn" @click="deleMd(item.id)">删除</button>
+    <template v-if="markdownJson.length">
+      <div class="lj_left">
+        <div
+          v-for="item in markdownJson"
+          :key="item.id"
+          @click="clickTitle(item)"
+          class="left_item"
+        >
+          <div class="left_item_title">{{ item.title }}</div>
+          <button class="left_item_btn" @click="deleMd(item.id)">删除</button>
+        </div>
       </div>
-    </div>
-    <div class="lj_right">
-      <h1 class="md_title" v-show="showType == 1">{{ title }}</h1>
-      <input type="text" v-model="title" v-show="showType == 2" />
-      <button @click="clickButton" v-show="showType == 1">编辑</button>
-      <button @click="clickButton" v-show="showType == 2">完成</button>
-      <!--
+      <div class="lj_right">
+        <h1 class="md_title" v-show="showType == 1">{{ title }}</h1>
+        <input type="text" v-model="title" v-show="showType == 2" />
+        <button @click="clickButton" v-show="showType == 1">编辑</button>
+        <button @click="clickButton" v-show="showType == 2">完成</button>
+        <!--
             defaultOpen="preview"    edit： 默认展示编辑区域 ， preview： 默认展示预览区域  , 其他 = edit
             :subfield="false" true： 双栏(编辑预览同屏)， false： 单栏(编辑预览分屏)
             :toolbarsFlag="false"   工具栏是否显示
@@ -25,39 +26,44 @@
             :shortCut="false"  是否启用快捷键
             :navigation="true" 导航菜单是否开启
        -->
-      <mavon-editor
-        class="deitor_style"
-        v-show="showType == 1"
-        v-model="value"
-        @save="saveMd"
-        @change="
-          value => {
-            mdChange(value);
-          }
-        "
-        defaultOpen="preview"
-        :subfield="false"
-        :toolbarsFlag="false"
-        :editable="false"
-        :boxShadow="false"
-        :shortCut="false"
-      />
-      <mavon-editor
-        v-show="showType == 2"
-        v-model="value"
-        @save="saveMd"
-        @change="
-          value => {
-            mdChange(value);
-          }
-        "
-        defaultOpen="edit"
-        :subfield="false"
-        :toolbarsFlag="false"
-        :boxShadow="false"
-        :shortCut="false"
-      />
-    </div>
+        <mavon-editor
+          class="deitor_style"
+          v-show="showType == 1"
+          v-model="value"
+          @save="saveMd"
+          @change="
+            value => {
+              mdChange(value);
+            }
+          "
+          defaultOpen="preview"
+          :subfield="false"
+          :toolbarsFlag="false"
+          :editable="false"
+          :boxShadow="false"
+          :shortCut="false"
+        />
+        <mavon-editor
+          class="deitor_style"
+          v-show="showType == 2"
+          v-model="value"
+          @save="saveMd"
+          @change="
+            value => {
+              mdChange(value);
+            }
+          "
+          defaultOpen="edit"
+          :subfield="false"
+          :toolbarsFlag="false"
+          :boxShadow="false"
+          :shortCut="false"
+        />
+      </div>
+    </template>
+    <template v-else>
+      <h1 class="link_xz"><router-link to="xinzeng">新建文档去</router-link></h1>
+    </template>
   </div>
 </template>
 
@@ -118,24 +124,28 @@ export default {
     async dataInit() {
       await this.getdata();
       console.log(this.markdownJson);
-      if (!this.$route.query.id) {
-        this.$router.push(`/wode?id=${this.markdownJson[0].id}`);
-      }
-      for (let item of this.markdownJson) {
-        //如果id存在则渲染
-        if (this.$route.query.id == item.id) {
-          this.title = item.title;
-          this.escapeString = item.msg;
-          return;
+      if (!this.markdownJson.length) {
+        return;
+      } else {
+        if (!this.$route.query.id) {
+          this.$router.push(`/wode?id=${this.markdownJson[0].id}`);
         }
+        for (let item of this.markdownJson) {
+          //如果id存在则渲染
+          if (this.$route.query.id == item.id) {
+            this.title = item.title;
+            this.escapeString = item.msg;
+            return;
+          }
+        }
+        //不存在就显示第一条数据
+        this.$router.push(`/wode?id=${this.markdownJson[0].id}`);
+        this.$router.go(0);
       }
-      //不存在就显示第一条数据
-      this.$router.push(`/wode?id=${this.markdownJson[0].id}`);
-      this.$router.go(0);
     },
     getdata() {
-      console.log(this.$store.state.username)
-      let url = `http://localhost:8090/getmd`;
+      console.log(this.$store.state.username);
+      let url = `http://localhost:8090/getmd?user_id=${this.$store.state.user_id}`;
       return fetch(url)
         .then(res => res.json())
         .catch(error => console.error("Error:", error))
@@ -195,6 +205,10 @@ export default {
   width: 960px;
 }
 
+.link_xz {
+  width: 100%;
+  text-align: center;
+}
 .liaojie {
   display: flex;
   .lj_left {
