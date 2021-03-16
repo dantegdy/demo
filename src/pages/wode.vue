@@ -103,7 +103,8 @@ export default {
   methods: {
     deleMd(id) {
       console.log(id);
-      var url = `http://127.0.0.1:8090/delmd?id=${id}`;
+      var url = `http://49.234.229.70:8090/delmd?id=${id}`;
+      // var url = `http://127.0.0.1:8090/delmd?id=${id}`;
 
       fetch(url, {
         method: "POST" // or 'PUT'
@@ -145,7 +146,8 @@ export default {
     },
     getdata() {
       console.log(this.$store.state.username);
-      let url = `http://localhost:8090/getmd?user_id=${this.$store.state.user_id}`;
+      let url = `http://49.234.229.70:8090/getmd?user_id=${this.$store.state.user_id}`;
+      // let url = `http://localhost:8090/getmd?user_id=${this.$store.state.user_id}`;
       return fetch(url)
         .then(res => res.json())
         .catch(error => console.error("Error:", error))
@@ -177,7 +179,8 @@ export default {
     saveMd() {
       console.log("save");
       let msg = escape(this.escapeString);
-      var url = `http://127.0.0.1:8090/savemd?id=${this.$route.query.id}&title=${this.title}&msg=${msg}`;
+      var url = `http://49.234.229.70:8090/savemd?id=${this.$route.query.id}&title=${this.title}&msg=${msg}`;
+      // var url = `http://127.0.0.1:8090/savemd?id=${this.$route.query.id}&title=${this.title}&msg=${msg}`;
 
       fetch(url, {
         method: "POST" // or 'PUT'

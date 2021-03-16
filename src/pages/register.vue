@@ -90,7 +90,8 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          var url = `http://127.0.0.1:8090/users/register`;
+          var url = `http://49.234.229.70:8090/users/register`;
+          // var url = `http://127.0.0.1:8090/users/register`;
 
           fetch(url, {
             method: "POST", // or 'PUT'

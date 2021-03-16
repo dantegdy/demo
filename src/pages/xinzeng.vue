@@ -37,7 +37,8 @@ export default {
       if (this.title && this.value && this.type) {
         console.log("save");
         let msg = escape(this.value);
-        var url = `http://127.0.0.1:8090/setmd?userid=${this.$store.state.user_id}&type=${this.type}&title=${this.title}&msg=${msg}`;
+        var url = `http://49.234.229.70:8090/setmd?userid=${this.$store.state.user_id}&type=${this.type}&title=${this.title}&msg=${msg}`;
+        // var url = `http://127.0.0.1:8090/setmd?userid=${this.$store.state.user_id}&type=${this.type}&title=${this.title}&msg=${msg}`;
 
         fetch(url, {
           method: "POST" // or 'PUT'
@@ -54,6 +55,7 @@ export default {
     },
     mdChange(text) {
       // console.log(text);
+      console.log(escape(text))
     }
   }
 };

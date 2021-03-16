@@ -24,7 +24,6 @@
       <mavon-editor
         class="deitor_style"
         v-model="value"
-
         defaultOpen="preview"
         :subfield="false"
         :toolbarsFlag="false"
@@ -46,11 +45,6 @@ export default {
       title: "",
       markdownJson: [],
       showType: 1, //  1:日常显示状态 2:编辑状态
-      // toolbars: {
-      //   navigation: true,
-      //   subfield: true,
-      //   preview: true
-      // },
       escapeString: ""
     };
   },
@@ -70,7 +64,6 @@ export default {
   },
 
   methods: {
-
     async dataInit() {
       await this.getdata();
       console.log(this.markdownJson);
@@ -90,7 +83,8 @@ export default {
       this.$router.go(0);
     },
     getdata() {
-      let url = `http://localhost:8090/getmd`;
+      // let url = `http://localhost:8090/getmd`;
+      let url = `http://49.234.229.70:8090/getmd`;
       return fetch(url)
         .then(res => res.json())
         .catch(error => console.error("Error:", error))
@@ -106,27 +100,7 @@ export default {
         this.title = item.title;
         this.escapeString = item.msg;
       }
-    },
-
-    // saveMd() {
-    //   console.log("save");
-    //   let msg = escape(this.escapeString);
-    //   var url = `http://127.0.0.1:8090/savemd?id=${this.$route.query.id}&title=${this.title}&msg=${msg}`;
-
-    //   fetch(url, {
-    //     method: "POST" // or 'PUT'
-    //   })
-    //     .then(res => res.json())
-    //     .catch(error => console.error("Error:", error))
-    //     .then(response => {
-    //       console.log("Success:", response);
-    //       this.dataInit();
-    //     });
-    // },
-    // mdChange(value) {
-    //   this.escapeString = value;
-    //   // console.log(escape(value));
-    // }
+    }
   },
   components: {
     "vue-markdown": VueMarkdown

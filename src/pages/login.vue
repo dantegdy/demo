@@ -65,7 +65,8 @@ export default {
         );
         return;
       }
-      var url = `http://127.0.0.1:8090/users/login`;
+      var url = `http://49.234.229.70:8090/users/login`;
+      // var url = `http://127.0.0.1:8090/users/login`;
 
       fetch(url, {
         method: "POST", // or 'PUT'
