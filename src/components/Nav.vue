@@ -1,7 +1,7 @@
 <template>
   <div class="Nav">
     <div class="Nav_logo">
-      <router-link to="">Dante代码之家</router-link>
+      <router-link to="/">Dante代码之家</router-link>
       <div class="Nav_user" v-if="this.$store.state.username">
         <div>
           {{ this.$store.state.username }}
