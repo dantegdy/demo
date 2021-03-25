@@ -33,9 +33,9 @@ export default {
   data() {
     return {
       NavData: [
-        { name: "了解", to: "/liaojie" },
-        { name: "我的", to: "/wode" },
-        { name: "新增", to: "/xinzeng" }
+        { name: "了解", to: "liaojie" },
+        { name: "我的", to: "wode" },
+        { name: "新增", to: "xinzeng" }
         // { name: "高频", to: "gaoping" },
         // { name: "指南", to: "help" },
       ]
