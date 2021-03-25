@@ -6,30 +6,30 @@ import store from '../../store/index'
 Vue.use(Router)
 
 const router= new Router({
-  mode:"history",
+  // mode:"history",
   routes: [
     {
-      path: '/app',
+      path: '/',
       name: 'Home',
       component: Home
     },
     {
-      path: '/app/liaojie',
+      path: '/liaojie',
       name:'liaojie',
       component:()=>import(/* webpackChunName: "liaojie" */ '@/pages/liaojie')
     },
     {
-      path: '/app/xinzeng',
+      path: '/xinzeng',
       name:'xinzeng',
       component:()=>import(/* webpackChunName: "xinzeng" */ '@/pages/xinzeng')
     },
     {
-      path: '/app/login',
+      path: '/login',
       name:'login',
       component:()=>import(/* webpackChunName: "login" */ '@/pages/login')
     },
     {
-      path: '/app/wode',
+      path: '/wode',
       name:'wode',
       component:()=>import(/* webpackChunName: "wode" */ '@/pages/wode'),
       beforeEnter:(to,from,next)=>{
@@ -41,14 +41,14 @@ const router= new Router({
           if(window.localStorage.getItem('username')){
             store.state.username = window.localStorage.getItem('username')
           }else{
-            next('/app/login')
+            next('/login')
           }
         }
         next()
       }
     },
     {
-      path: '/app/register',
+      path: '/register',
       name:'register',
       component:()=>import(/* webpackChunName: "register" */ '@/pages/register')
     },

@@ -14,7 +14,7 @@
           type="password"
         ></el-input>
       </div>
-      <router-link to="/app/register">立即注册</router-link>
+      <router-link to="/register">立即注册</router-link>
       <div class="login_button_box">
         <div class="login_button" @click="doLogin" >确认</div>
       </div>
@@ -90,7 +90,7 @@ export default {
             this.$store.state.user_id=response.msg.user_id
             this.username = "";
             this.passworld = "";
-            this.$router.push("/app/wode");
+            this.$router.push("/wode");
           }
         });
     }

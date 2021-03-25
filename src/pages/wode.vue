@@ -129,7 +129,7 @@ export default {
         return;
       } else {
         if (!this.$route.query.id) {
-          this.$router.push(`/app/wode?id=${this.markdownJson[0].id}`);
+          this.$router.push(`/wode?id=${this.markdownJson[0].id}`);
         }
         for (let item of this.markdownJson) {
           //如果id存在则渲染
@@ -140,7 +140,7 @@ export default {
           }
         }
         //不存在就显示第一条数据
-        this.$router.push(`/app/wode?id=${this.markdownJson[0].id}`);
+        this.$router.push(`/wode?id=${this.markdownJson[0].id}`);
         this.$router.go(0);
       }
     },
@@ -159,7 +159,7 @@ export default {
     },
     clickTitle(item) {
       if (this.$route.query.id != item.id) {
-        this.$router.push(`/app/wode?id=${item.id}`);
+        this.$router.push(`/wode?id=${item.id}`);
         this.title = item.title;
         this.escapeString = item.msg;
       }

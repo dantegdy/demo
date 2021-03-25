@@ -8,7 +8,7 @@
       <h1>Dante代码之家</h1>
       <p>前端进阶之路</p>
       <div class="button">
-        <router-link to="/app/liaojie">
+        <router-link to="/liaojie">
           <div class="button_box">快速了解 →</div>
         </router-link>
       </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="Nav">
     <div class="Nav_logo">
-      <router-link to="/app">Dante代码之家</router-link>
+      <router-link to="">Dante代码之家</router-link>
       <div class="Nav_user" v-if="this.$store.state.username">
         <div>
           {{ this.$store.state.username }}
@@ -33,9 +33,9 @@ export default {
   data() {
     return {
       NavData: [
-        { name: "了解", to: "/app/liaojie" },
-        { name: "我的", to: "/app/wode" },
-        { name: "新增", to: "/app/xinzeng" }
+        { name: "了解", to: "/liaojie" },
+        { name: "我的", to: "/wode" },
+        { name: "新增", to: "/xinzeng" }
         // { name: "高频", to: "gaoping" },
         // { name: "指南", to: "help" },
       ]
