@@ -47,7 +47,7 @@ export default {
           .catch(error => console.error("Error:", error))
           .then(response => {
             console.log("Success:", response.mdId);
-            this.$router.push(`/liaojie?id=${response.mdId}`);
+            this.$router.push(`/app/liaojie?id=${response.mdId}`);
           });
       } else {
         alert("标题、类型或内容不得为空");

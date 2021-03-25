@@ -9,27 +9,27 @@ const router= new Router({
   mode:"history",
   routes: [
     {
-      path: '/',
+      path: '/app',
       name: 'Home',
       component: Home
     },
     {
-      path: '/liaojie',
+      path: '/app/liaojie',
       name:'liaojie',
       component:()=>import(/* webpackChunName: "liaojie" */ '@/pages/liaojie')
     },
     {
-      path: '/xinzeng',
+      path: '/app/xinzeng',
       name:'xinzeng',
       component:()=>import(/* webpackChunName: "xinzeng" */ '@/pages/xinzeng')
     },
     {
-      path: '/login',
+      path: '/app/login',
       name:'login',
       component:()=>import(/* webpackChunName: "login" */ '@/pages/login')
     },
     {
-      path: '/wode',
+      path: '/app/wode',
       name:'wode',
       component:()=>import(/* webpackChunName: "wode" */ '@/pages/wode'),
       beforeEnter:(to,from,next)=>{
@@ -41,14 +41,14 @@ const router= new Router({
           if(window.localStorage.getItem('username')){
             store.state.username = window.localStorage.getItem('username')
           }else{
-            next('/login')
+            next('/app/login')
           }
         }
         next()
       }
     },
     {
-      path: '/register',
+      path: '/app/register',
       name:'register',
       component:()=>import(/* webpackChunName: "register" */ '@/pages/register')
     },

@@ -107,6 +107,7 @@ export default {
               console.log("Success:", response);
               if (response.type === 200) {
                 console.log("注册成功 ");
+
               }
             });
           // alert("submit!");
